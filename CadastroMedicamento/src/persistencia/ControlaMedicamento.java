@@ -14,6 +14,15 @@ public class ControlaMedicamento {
              return false;
          }
      }
+    public  boolean updateMedicamento(Medicamento m, int index){
+        if (m != null){
+            medicamentos.set(index, m);
+            return  true;
+        }else{
+            return false;
+        }
+    }
+
      public ArrayList<Medicamento>mostrarMedicamento(){
         return medicamentos;
      }

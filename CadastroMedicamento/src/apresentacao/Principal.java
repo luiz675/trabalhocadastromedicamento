@@ -39,10 +39,11 @@ public class Principal extends JFrame {
     }
     public  Principal(){
         setContentPane(MainPanel);
-        setTitle("Cadastro de medicamento");
+        setTitle("Cadastro de Medicamento");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setSize(700, 400);
+
         btmSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,11 +66,11 @@ public class Principal extends JFrame {
                     medicamento.setMedicamentoLiquidoOuComprimido(TTipoMedicamento.getText());
 
                     if (cm.addMedicamento(medicamento)){
-                        JOptionPane.showConfirmDialog(null,"Medicamento cadastrado com sucesso");
+                        JOptionPane.showConfirmDialog(null,"Medicamento Cadastrado com Sucesso");
                         limparCampos();
 
                     }else {
-                        JOptionPane.showMessageDialog(null, "erro ao cadastrar");
+                        JOptionPane.showMessageDialog(null, "Erro ao Cadastrar");
                         limparCampos();
 
                     }
@@ -90,8 +91,11 @@ public class Principal extends JFrame {
         mostrarTudoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dlMostrarTudo dlg = new dlMostrarTudo(cm);
-                dlg.setVisible(true);
+                /*dlMostrarTudo dlg = new dlMostrarTudo(cm);
+                dlg.setVisible(true);*/
+
+                Alterar alterar = new Alterar(cm);
+                alterar.setVisible(true);
             }
         });
         button1.addActionListener(new ActionListener() {

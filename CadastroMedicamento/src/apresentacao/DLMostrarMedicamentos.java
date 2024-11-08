@@ -70,6 +70,13 @@ public class DLMostrarMedicamentos extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        buttonOK.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Alterar alterar = new Alterar(cm);
+                alterar.setVisible(true);
+            }
+        });
     }
 
     private void onOK() {
