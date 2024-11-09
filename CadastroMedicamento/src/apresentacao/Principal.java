@@ -16,7 +16,7 @@ public class Principal extends JFrame {
     private JTextField TDataValidade;
     private JTextField TMedicamentoControlado;
     //private JTextField TMedicamentoLiquidoOuComprimido;
-    private JButton mostrarTudoButton;
+    private JButton ExcluirButton;
     private JButton btmLimpar;
     private JButton btmSalvar;
     private JButton btmMostrarTabela;
@@ -88,7 +88,7 @@ public class Principal extends JFrame {
                 limparCampos();
             }
         });
-        mostrarTudoButton.addActionListener(new ActionListener() {
+        ExcluirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 /*dlMostrarTudo dlg = new dlMostrarTudo(cm);

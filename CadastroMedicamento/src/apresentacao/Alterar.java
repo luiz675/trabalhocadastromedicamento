@@ -4,7 +4,6 @@ import negocio.Medicamento;
 import persistencia.ControlaMedicamento;
 
 import javax.swing.*;
-import javax.swing.text.html.parser.Parser;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
@@ -26,6 +25,7 @@ public class Alterar extends JFrame
     private JTextField TMedicamentoControlado;
     private JTextField TTipoMedicamento;
     private JTextField Tid;
+    private JButton excluirButton;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     ControlaMedicamento cm;
 
@@ -36,6 +36,7 @@ public class Alterar extends JFrame
        // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setSize(700, 400);
+
 
     }
     public Alterar(ControlaMedicamento cm) {
@@ -49,12 +50,12 @@ public class Alterar extends JFrame
             @Override
             public void actionPerformed(ActionEvent e) {
                 String pesquisar = textPesquisar.getText();
-
+                //int i=0;
                 for (Medicamento medicamentos : cm.mostrarMedicamento()){
 
                     if (Objects.equals(medicamentos.getNome(), pesquisar)){
-                        Tid.setText(Integer.toString(medicamentos.getId() - 1));
 
+                        Tid.setText(Integer.toString(medicamentos.getId()));
                         TMedicamento.setText(medicamentos.getNome());
                         TPrincipioAtivo.setText(medicamentos.getPrincipioAtivo());
                         TDataFabricacao.setText(medicamentos.getDataFabricacao().format(formatter));
@@ -76,6 +77,7 @@ public class Alterar extends JFrame
             public void actionPerformed(ActionEvent e) {
                 Medicamento medicamento = new Medicamento();
 
+                medicamento.setId(Integer.parseInt(Tid.getText()));
                 medicamento.setNome(TMedicamento.getText());
                 medicamento.setPrincipioAtivo(TPrincipioAtivo.getText());
                 medicamento.setDataFabricacao(LocalDate.parse(TDataFabricacao.getText(), formatter));
@@ -83,12 +85,32 @@ public class Alterar extends JFrame
                 medicamento.setMedicamentoControlado(TMedicamentoControlado.getText());
                 medicamento.setMedicamentoLiquidoOuComprimido(TTipoMedicamento.getText());
 
-                if (cm.updateMedicamento(medicamento, Integer.parseInt(Tid.getText()))){
+                int indice = Integer.parseInt(Tid.getText());
+                if (cm.updateMedicamento(medicamento, indice)){
                     JOptionPane.showConfirmDialog(null,"Medicamento Alterado com Sucesso");
 
 
                 }else {
                     JOptionPane.showMessageDialog(null, "Erro ao Alterar");
+
+
+                }
+            }
+        });
+
+        excluirButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Medicamento medicamento = new Medicamento();
+                medicamento.setId(Integer.parseInt(Tid.getText()));
+
+
+                if (cm.excluirMedicamento(Integer.parseInt(Tid.getText()))){
+                    JOptionPane.showConfirmDialog(null,"Medicamento Excluido com Sucesso");
+
+
+                }else {
+                    JOptionPane.showMessageDialog(null, "Erro ao Excluir");
 
 
                 }

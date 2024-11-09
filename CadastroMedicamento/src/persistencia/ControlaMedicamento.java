@@ -14,9 +14,19 @@ public class ControlaMedicamento {
              return false;
          }
      }
-    public  boolean updateMedicamento(Medicamento m, int index){
+
+    public  boolean updateMedicamento(Medicamento m, int idx){
         if (m != null){
-            medicamentos.set(index, m);
+            medicamentos.set(idx-1, m);
+            return  true;
+        }else{
+            return false;
+        }
+    }
+
+    public  boolean excluirMedicamento(int index){
+        if (index >= 0){
+            medicamentos.remove(index-1);
             return  true;
         }else{
             return false;
